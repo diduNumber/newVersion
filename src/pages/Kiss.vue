@@ -3,7 +3,7 @@
     	<hello></hello>
     	<ban :image='data.brandHeadImg'></ban>
     	<ul class="kiss_option">
-    		<li v-for='item,index in ["价格","销量","筛选"]' @click='changeItem($event)'>{{ item }}</li>
+    		<li v-for='item,index in ["价格","销量","筛选"]' @click='changeItem(index)' :class='{"kissActive": (index == indexItem) && rot,"kissActive1": (index == indexItem) && !rot }'>{{ item }}</li>
     	</ul>
     	<div class="goodDetail">
     		<ul>
@@ -15,7 +15,7 @@
     			    	<h3 class="ellipsis">{{ item.goods.productName }}</h3>
     			    </div>
     			    <div class="price">
-    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice }}</span>
+    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice  | orderBy rot}}</span>
     			    	<span class="realPrice">￥{{ item.goods.marketPrice }}</span>
     			    	<span class="kissCar"></span>
     			    </div>
@@ -47,7 +47,10 @@
         		start:1,
         		flag: false,
         		//切换class
-        		index: 0
+        		indexItem:4,
+        		//用于排序使用
+        		rot: false,
+        		str: ''
         	}
         },
         components:{
@@ -74,9 +77,10 @@
         		}
         	},
         	//点击一次获取数据
-        	changeItem (ev) {
-        		//改变背景图
-        		console.log(ev);
+        	changeItem (index) {
+        		//改变相应的indexItem
+        		this.indexItem = index;
+        		this.rot = !this.rot;
         		this.axios.get('http://w.lefeng.com/api/neptune/goods/list_with_stock/v1?brandId=755041475&start=1&sort=%7B%22vipshopPrice%22%3A%22desc%22%7D').then(res => {
 	        		var that = this;
 	        		this.goods = [];
