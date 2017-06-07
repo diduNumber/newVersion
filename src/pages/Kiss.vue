@@ -3,7 +3,7 @@
     	<hello></hello>
     	<ban :image='data.brandHeadImg'></ban>
     	<ul class="kiss_option">
-    		<li v-for='item,index in ["价格","销量","筛选"]' @click='changeItem(index)' :class='{"kissActive": (index == indexItem) && rot }'>{{ item }}</li>
+    		<li v-for='item,index in ["价格","销量","筛选"]' @click='changeItem(index)' :class='{"kissActive": (index == indexItem) && rot,"kissActive1": (index == indexItem) && !rot }'>{{ item }}</li>
     	</ul>
     	<div class="goodDetail">
     		<ul>
@@ -15,7 +15,7 @@
     			    	<h3 class="ellipsis">{{ item.goods.productName }}</h3>
     			    </div>
     			    <div class="price">
-    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice }}</span>
+    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice  | orderBy rot}}</span>
     			    	<span class="realPrice">￥{{ item.goods.marketPrice }}</span>
     			    	<span class="kissCar"></span>
     			    </div>
@@ -48,7 +48,9 @@
         		flag: false,
         		//切换class
         		indexItem:4,
-        		rot: true
+        		//用于排序使用
+        		rot: false,
+        		str: ''
         	}
         },
         components:{

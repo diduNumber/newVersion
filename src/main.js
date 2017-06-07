@@ -18,6 +18,10 @@ Vue.use(VueLazyload, {
   attempt: 1,
   listenEvents: [ 'scroll', 'mousewheel' ]
 });
+//引入swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+//全局都可以使用
+Vue.use(VueAwesomeSwiper)
 
 Vue.config.productionTip = false
 
