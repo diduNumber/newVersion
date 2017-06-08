@@ -12,6 +12,7 @@ import Kiss from '../pages/Kiss'
 import Global from '../pages/Global'
 import Gift from '../pages/Gift' 
 import Mother from '../pages/Mother'
+import Room from '../pages/room'
 
 //定义路由规则
 const routes = [
@@ -20,7 +21,8 @@ const routes = [
     {path: '/kiss', component: Kiss},
     {path: '/global', component: Global},
     {path: '/mother', component: Mother},
-    {path: '/gift', component: Gift}
+    {path: '/gift', component: Gift},
+    {path:'/room/:id', component:Room}
 ];
 //导出创建好的路由对象
 export default new VueRouter({

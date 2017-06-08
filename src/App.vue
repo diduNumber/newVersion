@@ -73,6 +73,7 @@ export default {
    align-items: center;
    justify-content: space-around;
    background-color: #fff;
+   z-index: 99;
 }
 .tabbar a{
    text-decoration: none;

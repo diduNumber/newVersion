@@ -166,9 +166,9 @@
 					            let func = binding.value;
 					            func();
 				           }
-				       }
-	              })
-				}
+				        }
+	            })
+				    }
 			  }
 		}
 }
