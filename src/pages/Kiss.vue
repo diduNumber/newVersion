@@ -15,13 +15,14 @@
     			    	<h3 class="ellipsis">{{ item.goods.productName }}</h3>
     			    </div>
     			    <div class="price">
-    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice  | orderBy rot}}</span>
+    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice}}</span>
     			    	<span class="realPrice">￥{{ item.goods.marketPrice }}</span>
     			    	<span class="kissCar"></span>
     			    </div>
     			</li>
     		</ul>
     	</div>
+    	
     </div>
 </template>
 
@@ -32,6 +33,22 @@
    	const Child = {
    		props:['image'],
    		template: '<div class="kiss_banner"> <img :src="image"> </div>',
+   	}
+   	//定义一个遮罩图层
+   	const boxHidden = {
+   		template: `<div class="kiss_hidden">
+   		      <div class="hiddentitle">
+   		          <span id="kiss_hidden">取消</span>
+   		          <p class="kiss_filter">筛选</p>
+   		      </div>
+   		      <div class='kiss_sort'>
+   		          <h4>分类</h4>
+   		          <ul>
+   		              <li>全部</li>
+   		              <li v-for='item in '></li>
+   		          </ul>
+   		      </div>
+   		</div>`
    	}
    	//物品显示信息
    	const goodDetail = {
@@ -50,7 +67,11 @@
         		indexItem:4,
         		//用于排序使用
         		rot: false,
-        		str: ''
+        		str: 'desc',
+        		//用于切换销量和排序
+        		change: '',
+        		//用于存储筛选的项目
+        		choice: {}
         	}
         },
         components:{
@@ -64,13 +85,12 @@
         		scrollDisable = true;
         		this.start++;
                 if(this.start <= 16){
-	        		this.axios.get('http://w.lefeng.com/api/neptune/goods/list_with_stock/v1?brandId=755041475&start='+this.start+'&sort=%7B%22vipshopPrice%22%3A%22desc%22%7D').then(res => {
+	        		this.axios.get('http://w.lefeng.com/api/neptune/goods/list_with_stock/v1?brandId=755041475&start='+this.start+'&sort=%7B%22'+this.change+'%22%3A%22'+this.str+'%22%7D').then(res => {
 		        		var that = this;
 		                res.data.data.map(function(item,index){
 		                	that.goods.push(item);
 		                })
 		        		scrollDisable = false;
-		        		console.log(this.goods);
 		        	}, err => {
 		        		console.log(err);
 		        	})
@@ -80,16 +100,37 @@
         	changeItem (index) {
         		//改变相应的indexItem
         		this.indexItem = index;
+        		if(index == 0){
+        			this.change = 'vipshopPrice';
+        		}else if(index == 1){
+        			this.change = 'sale'
+        		}else{
+        			this.change = '';
+        		}
         		this.rot = !this.rot;
-        		this.axios.get('http://w.lefeng.com/api/neptune/goods/list_with_stock/v1?brandId=755041475&start=1&sort=%7B%22vipshopPrice%22%3A%22desc%22%7D').then(res => {
-	        		var that = this;
-	        		this.goods = [];
-	                res.data.data.map(function(item,index){
-	                	that.goods.push(item);
-	                })
-	        	}, err => {
-	        		console.log(err);
-	        	})
+        		if(this.rot){
+	        		this.str = 'desc';
+	        		this.axios.get('http://w.lefeng.com/api/neptune/goods/list_with_stock/v1?brandId=755041475&start=1&sort=%7B%22'+this.change+'%22%3A%22desc%22%7D').then(res => {
+		        		var that = this;
+		        		this.goods = [];
+		                res.data.data.map(function(item,index){
+		                	that.goods.push(item);
+		                })
+		        	}, err => {
+		        		console.log(err);
+		        	})
+        	  }else{
+	        	  	this.str = 'asc';
+	        	  	this.axios.get('http://w.lefeng.com/api/neptune/goods/list_with_stock/v1?brandId=755041475&start=1&sort=%7B%22'+this.change+'%22%3A%22asc%22%7D').then(res => {
+		        		var that = this;
+		        		this.goods = [];
+		                res.data.data.map(function(item,index){
+		                	that.goods.push(item);
+		                })
+		        	}, err => {
+		        		console.log(err);
+		        	})
+        	  }
         	}
         },
         created () {
@@ -108,7 +149,13 @@
 	        	}, err => {
 	        		console.log(err);
 	        	})
-        },
+        	//获得筛选信息
+            this.axios.get('http://w.lefeng.com/api/neptune/goods/get_thirdcat_size/v1?brandId=755041475').then(res => {
+        		  console.log(res);
+	        	}, err => {
+	        		console.log(err);
+	        	}) 
+        }, 
         //自定义一个scroll指令
         directives: {
 			  scroll: {
