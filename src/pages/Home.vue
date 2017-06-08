@@ -217,7 +217,7 @@
 </script>
 
 <style type='text/css'>
-    #home{
+#home{
   width: 100%;
   height:3842px;
   background-color: #f6f6f6;
@@ -384,14 +384,14 @@
   display: inline-block;
   width: 100%;
   position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0,0,0,.6);
-    font-size: .12rem;
-    color: #fff;
-    line-height: .21rem;
-    text-indent: .12rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,.6);
+  font-size: .12rem;
+  color: #fff;
+  line-height: .21rem;
+  text-indent: .12rem;
 }
 #home .main .homeXuan ul li{
   background-color: #fff;
