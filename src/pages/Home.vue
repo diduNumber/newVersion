@@ -6,7 +6,7 @@
         <i class="homeSearch"></i>
         静佳
       </a>
-      <span class="homeMine"></span>
+      <span class="homeMine" @click="goMine()"></span>
     </header>
     <div class="main">
       <swiper :options="swiperOption" ref="mySwiper">
@@ -137,9 +137,10 @@
     data(){
       return{
         swiperOption:{
-          autoplay:1000,
+          autoplay:3000,
           direction:'horizontal',
-          pagination:'.swiper-pagination'
+          pagination:'.swiper-pagination',
+          autoplayDisableOnInteraction:false
         },
         data:{},
         gou:{},
@@ -167,9 +168,14 @@
                 a.abc.push(item);
               })
               load = false;
-              console.log(this.abc);
+              //console.log(this.abc);
              })
           }
+        },
+        goMine(){
+          this.$router.push({
+            path:'/mine'
+          })
         }
     },
     created(){
@@ -196,7 +202,7 @@
       });
       this.axios.get('http://w.lefeng.com/api/neptune/handpick_list/v1?start=2').then(res => {
         this.pages = res.data.data;
-        console.log(this.pages);
+        //console.log(this.pages);
       })
     },
     directives: {
