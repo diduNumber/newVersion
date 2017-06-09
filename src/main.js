@@ -13,8 +13,9 @@ import VueLazyload from 'vue-lazyload'
 //全局引入VueLazyload 
 Vue.use(VueLazyload, {
   preLoad: 4,
-  error: '../static/nav0.png',
-  loading: 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif',
+  error: '../static/loding.png',
+  // loading: 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif',
+  loading:'../static/loding.png',
   attempt: 1,
   listenEvents: [ 'scroll', 'mousewheel' ]
 });

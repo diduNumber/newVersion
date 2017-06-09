@@ -69,7 +69,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="homeCarImg">
+            <div class="homeCarImg" @click="goCart()">
             <span></span>
             </div>
         </div>
@@ -140,7 +140,13 @@
                     } 
                 });
                 
-            }
+            },
+            // 跳转到购物车页面
+            goCart(){
+            this.$router.push({
+                path:"/shopping"
+            })
+        }
         },
         created(){
             this.axios.get("http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=951%2C954%2C957%2C980%2C964%2C983%2C976&resolution=375x667&appName=lefeng_android&version=4.1.1").then(res => {

@@ -15,6 +15,13 @@
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
+        <div class="goBar">
+            <ul>
+                <li v-for='(item, index) in goBar' @click="goBarTo(index)">
+                    <img v-lazy="item.imgFullPath">
+                </li>
+            </ul>
+        </div>
       <section>
         <div v-for='item in data[724]'>
           <img v-lazy="item.imgFullPath">
@@ -121,7 +128,7 @@
       <div class="homeTop">
         <a href="#"></a>
       </div>
-      <div class="homeCarImg">
+      <div class="homeCarImg" @click="goCart()">
         <span></span>
       </div>
     </div>
@@ -154,7 +161,8 @@
         //用于切换每次请求
         start:2,
         abc:[],
-        pages:{}
+        pages:{},
+        goBar:{}
       }
     },
     methods:{
@@ -176,9 +184,54 @@
           this.$router.push({
             path:'/mine'
           })
+        },
+        // 点击4张图片跳转到其他页面
+        goBarTo(index){
+            console.log(index);
+            // 判断点击的下标，带不同的参数进行页面跳转
+            switch(index){
+                case 0:{
+                    console.log(0);
+                    this.$router.push({
+                        path:"/kiss"
+                    })
+                };
+                break;
+                case 1:{
+                    console.log(1);
+                    this.$router.push({
+                        path:"/global"
+                    })
+                };
+                break;
+                case 2:{
+                    console.log(2);
+                    this.$router.push({
+                        path:"/mother"
+                    })
+                };
+                break;
+                case 3:{
+                    console.log(3);
+                    this.$router.push({
+                        path:"/gift"
+                    })
+                };
+                break;
+            }
+        },
+        goCart(){
+            this.$router.push({
+                path:"/shopping"
+            })
         }
     },
     created(){
+        // 请求bar的数据
+        this.axios.get('http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=943%2C478%2C496%2C693%2C724%2C725%2C726%2C727%2C728&resolution=375x667&appName=lefeng_android&version=4.1.1').then(res => {
+            this.goBar = res.data.data[496];
+            console.log(this.goBar);
+      })
       //获取轮播图，列表等数据
       this.axios.get('http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=943%2C478%2C496%2C693%2C724%2C725%2C726%2C727%2C728&resolution=375x667&appName=lefeng_android&version=4.1.1').then(res => {
         //console.log(res.data.data);
@@ -223,6 +276,10 @@
 </script>
 
 <style type='text/css'>
+#home .goBar ul{
+    display: flex;
+    background: #fff;
+}
 #home{
   width: 100%;
   height:3842px;
@@ -292,7 +349,7 @@
   height: 1.5rem;
 } 
 #home .main section{
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   margin-bottom: .075rem;
     padding: .1rem 0;
     width: 100%;

@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-   <div class='tabbar' @click='tabbarHidden($event)' v-if='flag'>
-       <router-link to="/kiss">
-           <img v-lazy="nav0.imgFullPath">
-       </router-link>
-       <router-link to="/global">
-          <img v-lazy="nav1.imgFullPath">
-       </router-link>
-       <router-link to="/mother">
-          <img v-lazy="nav2.imgFullPath"></router-link>
-       <router-link to="/gift">
-          <img v-lazy="nav3.imgFullPath">
-       </router-link>
-    </div>
-    <router-view></router-view>
+ <!-- <div class='tabbar' @click='tabbarHidden($event)' v-if='flag'>
+     <router-link to="/kiss">
+         <img v-lazy="nav0.imgFullPath">
+     </router-link>
+     <router-link to="/global">
+        <img v-lazy="nav1.imgFullPath">
+     </router-link>
+     <router-link to="/mother">
+        <img v-lazy="nav2.imgFullPath"></router-link>
+     <router-link to="/gift">
+        <img v-lazy="nav3.imgFullPath">
+     </router-link>
+  </div> -->
+  <router-view></router-view>
   </div>
 </template>
 
