@@ -22,7 +22,13 @@ Vue.use(VueLazyload, {
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 //全局都可以使用
 Vue.use(VueAwesomeSwiper)
-
+//引入museui
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+import 'muse-ui/dist/theme-default.css' 
+//全局都可以使用
+Vue.use(MuseUI)
+//使用light主题
 Vue.config.productionTip = false
 
 
