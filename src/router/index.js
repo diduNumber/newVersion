@@ -20,6 +20,7 @@ import Two from '../pages/Two'
 import Three from '../pages/Three'
 import Fore from '../pages/Fore'
 import Shopping from '../pages/shopping'
+import GoodDetail from '../pages/goodDetail'
 //定义路由规则
 const routes = [
     {path: '', component: Home},
@@ -30,7 +31,8 @@ const routes = [
     {path: '/gift', component: Gift},
     {path:'/room/:id', component:Room},
     {path:'/mine', component:Mine},
-    {path:'shopping', component:Shopping},
+    {path:'/shopping', component:Shopping},
+    {path:'/goodDetail', component:GoodDetail},
     {path:'/mineList',component:MineList
     ,children:[
     	{ path: '', component: One },

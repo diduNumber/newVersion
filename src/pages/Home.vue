@@ -109,7 +109,7 @@
       <div class="homeXuan">
         <p>· 每日精选 ·</p>
         <ul>
-          <li v-for="item in pages">
+          <li v-for="item in pages" @click="goDetail(item)">
             <div>
               <img v-lazy="item.goods.verticalImage"/>
               <div class="show ellipsis">
@@ -220,10 +220,21 @@
                 break;
             }
         },
+        // 跳转到购物车
         goCart(){
             this.$router.push({
                 path:"/shopping"
             })
+        },
+        // 跳转到详情页面
+        goDetail(item){
+          console.log(item);
+          this.$router.push({
+            path:'/goodDetail',
+            query:{
+              goods:item
+            }
+          })
         }
     },
     created(){
