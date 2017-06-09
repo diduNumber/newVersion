@@ -1,28 +1,30 @@
 <template>
     <div id='kiss' v-scroll='loadMore' >
     	<hello></hello>
-    	<ban :image='data.brandHeadImg'></ban>
-    	<ul class="kiss_option">
-    		<li v-for='item,index in ["价格","销量"]' @click='changeItem(index)' :class='{"kissActive": (index == indexItem) && rot,"kissActive1": (index == indexItem) && !rot }'>{{ item }}</li>
-    	    <li @click='slide($event)'>筛选</li>
-    	</ul>
-    	<div class="goodDetail">
-    		<ul>
-    			<li v-for='item,index in goods'>  
-    			    <img v-lazy="item.goods.verticalImage"/>
-    			    <p>蜂购全球</p>
-    			    <div class="show ellipsis">
-    			    	<h2>{{ item.goods.brandStoreName }}</h2>
-    			    	<h3 class="ellipsis">{{ item.goods.productName }}</h3>
-    			    </div>
-    			    <div class="price">
-    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice}}</span>
-    			    	<span class="realPrice">￥{{ item.goods.marketPrice }}</span>
-    			    	<span class="kissCar" @click='shopping(item)'></span>
-    			    </div>
-    			</li>
-    		</ul>
-    	</div>
+    	<div class="kissYou">
+	    	<ban :image='data.brandHeadImg'></ban>
+	    	<ul class="kiss_option">
+	    		<li v-for='item,index in ["价格","销量"]' @click='changeItem(index)' :class='{"kissActive": (index == indexItem) && rot,"kissActive1": (index == indexItem) && !rot }'>{{ item }}</li>
+	    	    <li @click='slide($event)'>筛选</li>
+	    	</ul>
+	    	<div class="goodDetail">
+	    		<ul>
+	    			<li v-for='item,index in goods'>  
+	    			    <img v-lazy="item.goods.verticalImage"/>
+	    			    <p>蜂购全球</p>
+	    			    <div class="show ellipsis">
+	    			    	<h2>{{ item.goods.brandStoreName }}</h2>
+	    			    	<h3 class="ellipsis">{{ item.goods.productName }}</h3>
+	    			    </div>
+	    			    <div class="price">
+	    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice}}</span>
+	    			    	<span class="realPrice">￥{{ item.goods.marketPrice }}</span>
+	    			    	<span class="kissCar" @click='shopping(item)'></span>
+	    			    </div>
+	    			</li>
+	    		</ul>
+	    	</div>	
+    	</div>	
     	<box-hidden :sx='sx' :show='show'></box-hidden>
     </div>
 </template>
@@ -214,6 +216,13 @@
 <style>
    #kiss{
    		color:#333;
+   }
+   .kissYou{
+   	 position: absolute;
+   	 left: 0;
+   	 right: 0;
+   	 top: 0.44rem;
+   	 bottom: 0;
    }
    .kiss_banner{
    	width: 100%;
