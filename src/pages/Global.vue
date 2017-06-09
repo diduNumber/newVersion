@@ -1,76 +1,78 @@
 <template>
     <div id='global'>
         <hello></hello>
-        <swiper :options="swiperOption" ref="mySwiper">
-            <swiper-slide v-for="item in data[951]">
-                <img :src="item.filename">
-            </swiper-slide>
-            <div class="swiper-pagination"  slot="pagination"></div>
-        </swiper>
-        <div class="nav" @click="goRoom($event)">
-            <!-- <ul>
-                <li v-for="item of data[954]">
+        <div class="global">
+            <swiper :options="swiperOption" ref="mySwiper">
+                <swiper-slide v-for="item in data[951]">
+                    <img :src="item.filename">
+                </swiper-slide>
+                <div class="swiper-pagination"  slot="pagination"></div>
+            </swiper>
+            <div class="nav" @click="goRoom($event)">
+                <!-- <ul>
+                    <li v-for="item of data[954]">
+                        <img v-lazy="item.filename">
+                    </li>
+                </ul> -->
+                <div  v-for="item of data[954]" class="li">
                     <img v-lazy="item.filename">
-                </li>
-            </ul> -->
-            <div  v-for="item of data[954]" class="li">
-                <img v-lazy="item.filename">
+                </div>
+            </div>
+            <div class="hotBrand">
+                <div class="hotBrandHeader">
+                    <!-- 取数据的时候打印出的data[957]和平常的不一样数组 -->
+                    <img v-lazy="item.filename" v-for="item of data[957]">
+                </div>
+                <div class="hotBrandList">
+                    <ul>
+                        <li v-for = "item of data[980]">
+                            <img v-lazy="item.filename" >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="seaBrand">
+                <div class="seaBrandHeader">
+                    <img v-lazy="item.filename" v-for="item of data[983]">
+                </div>
+                <div class="seaBranList">
+                    <ul>
+                        <li v-for="item of dataList">
+                            <img v-lazy="item.brandImage">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="singleBrand">
+                <div class="singleBrandHeader">
+                    <img v-lazy="item.filename" v-for="item of data[976]">
+                </div>
+                <div class="singleBrandList">
+                    <ul>
+                        <li v-for="item of goodsList">
+                            <div class="divImg">
+                                <img v-lazy="item.goods.image">
+                            </div>
+                            <div class="tagWrap">
+                                <span>蜂购全球</span>
+                            </div>
+                            <div class="nameWrap">
+                                <h2>{{ item.goods.brandStoreName }}</h2>
+                                <h3>{{ item.goods.productName }}</h3>
+                            </div>
+                            <div class="priceWrap">
+                                <span class="price"><i>￥</i>{{ item.goods.vipshopPrice }}</span>
+                                <span class="marketPrice">￥{{ item.goods.marketPrice}}</span>
+                                <span class="priceCart"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="homeCarImg">
+            <span></span>
             </div>
         </div>
-        <div class="hotBrand">
-            <div class="hotBrandHeader">
-                <!-- 取数据的时候打印出的data[957]和平常的不一样数组 -->
-                <img v-lazy="item.filename" v-for="item of data[957]">
-            </div>
-            <div class="hotBrandList">
-                <ul>
-                    <li v-for = "item of data[980]">
-                        <img v-lazy="item.filename" >
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="seaBrand">
-            <div class="seaBrandHeader">
-                <img v-lazy="item.filename" v-for="item of data[983]">
-            </div>
-            <div class="seaBranList">
-                <ul>
-                    <li v-for="item of dataList">
-                        <img v-lazy="item.brandImage">
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="singleBrand">
-            <div class="singleBrandHeader">
-                <img v-lazy="item.filename" v-for="item of data[976]">
-            </div>
-            <div class="singleBrandList">
-                <ul>
-                    <li v-for="item of goodsList">
-                        <div class="divImg">
-                            <img v-lazy="item.goods.image">
-                        </div>
-                        <div class="tagWrap">
-                            <span>蜂购全球</span>
-                        </div>
-                        <div class="nameWrap">
-                            <h2>{{ item.goods.brandStoreName }}</h2>
-                            <h3>{{ item.goods.productName }}</h3>
-                        </div>
-                        <div class="priceWrap">
-                            <span class="price"><i>￥</i>{{ item.goods.vipshopPrice }}</span>
-                            <span class="marketPrice">￥{{ item.goods.marketPrice}}</span>
-                            <span class="priceCart"></span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="homeCarImg">
-        <span></span>
-      </div>
     </div>
 </template>
 
@@ -159,6 +161,15 @@
 </script>
 
 <style>
+    #global .global{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0.44rem;
+    }
+    #global .header{
+        font-size: 0.13rem;
+    }
     #global .swiper-pagination-bullet{
         width: 6px;
         height: 6px;
@@ -172,9 +183,6 @@
     }
     #global .swiper-container-horizontal > .swiper-pagination-bullets{
         left: 1.5rem;
-    }
-    #global .header{
-        font-size: 0.13rem;
     }
     #global{
         font-size: 0;
