@@ -23,7 +23,7 @@
 					</div>
 					<div class="price">
 						<span class="spanPrice"><i>￥</i>{{ item.goods.vipshopPrice }}</span>
-						<span class="buy">立即购买</span>
+						<span class="buy" @click="buyThis(item)">立即购买</span>
 					</div>
 				</li>
 			</ul>
@@ -42,6 +42,9 @@
 					}
 				})
 			},*/
+			buyThis(item){
+				console.log(item);
+			},
 			getDate(){
 				this.axios.get(this.id.requestUrl).then(res => {
 				this.goodsList = res.data.data;
@@ -226,6 +229,7 @@
 	}
 	.room .goodList li .divImg{
 		font-size: 0;
+		padding: 0.1rem;
 	}
 	.room .goodList li .goodsName h2{
 		font-size: .13rem;

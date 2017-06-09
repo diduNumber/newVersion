@@ -33,6 +33,7 @@ export default {
 <style scoped>
 .header{
 	position: relative;
+	height: 0.44rem;
 }
 .header span:first-child{
 	position: absolute;

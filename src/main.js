@@ -13,8 +13,9 @@ import VueLazyload from 'vue-lazyload'
 //全局引入VueLazyload 
 Vue.use(VueLazyload, {
   preLoad: 4,
-  error: '../static/nav0.png',
-  loading: 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif',
+  error: '../static/loding.png',
+  // loading: 'http://cdn.uehtml.com/201402/1392662591495_1140x0.gif',
+  loading:'../static/loding.png',
   attempt: 1,
   listenEvents: [ 'scroll', 'mousewheel' ]
 });
@@ -24,8 +25,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
 //引入museui
 import MuseUI from 'muse-ui'
-import 'muse-ui/dist/muse-ui.css'
-import 'muse-ui/dist/theme-default.css' 
+
 //全局都可以使用
 Vue.use(MuseUI)
 //使用light主题
