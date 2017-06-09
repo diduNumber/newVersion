@@ -280,7 +280,7 @@
    	display: block;
    }
    .goodDetail li{
-   	width: 50%;
+   	width: 44.5%;
    	position: relative;
    	padding: 0.1rem;
    	display: inline-block;
