@@ -87,4 +87,8 @@
 	color: #999;
 	font-size: 100%;
 }
+#mineList .mineListRouter .router-link-active {
+	color: #ff0056;
+    border-bottom: 2px solid #ff0056;
+}
 </style>

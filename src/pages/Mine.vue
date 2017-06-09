@@ -12,15 +12,15 @@
 				<span></span>
 			</div>
 		</div>
-		<div class="mineMenu">
+		<div class="mineMenu" @click="mineList()">
 			<div class="mineDan">
 				<p>我的订单</p>
-				<span class="mineAll" @click="mineList()">全部订单</span>
+				<span class="mineAll">全部订单</span>
 			</div>
 		</div>
 		<div class="mineList">
 			<ul>
-				<li v-for="item in list">
+				<li v-for="(item, index) in list" @click='mineBind(index)'>
 					<img v-lazy="item.img">
 					<p>{{ item.title }}</p>
 				</li>
@@ -92,8 +92,34 @@
 			},
 			mineList(){
 				this.$router.push({
-					path:'/mineList'
+					path:'/mineList/one'
 				})
+			},
+			mineBind(index){
+				switch(index){
+					case 0:{
+						console.log(0);
+						this.$router.push({
+							path:'/mineList/two'
+						});
+					};
+					break;
+					case 1:{
+						console.log(1);
+						this.$router.push({
+							path:'/mineList/three'
+						});
+					};
+					break;
+					case 2:{
+						console.log(2);
+						this.$router.push({
+							path:'/mineList/fore'
+						});
+					};
+					break;
+				}
+				
 			}
 		}
 	}

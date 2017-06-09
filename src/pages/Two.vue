@@ -2,11 +2,20 @@
 	<div id="mineTwo">
 		<i></i>
 		<span>暂无支付订单呦~~</span>
-		<p>随便逛逛</p>
+		<p @click="twoBack()">随便逛逛</p>
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default{
+		name:'mineListTwo',
+		methods:{
+			twoBack(){
+				this.$router.push({
+					path:'/home'
+				})
+			}
+		}
+	}
 </script>
 <style type="text/css">
 #mineTwo{

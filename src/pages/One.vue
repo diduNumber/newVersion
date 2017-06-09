@@ -2,11 +2,20 @@
 	<div id="mineOne">
 		<i></i>
 		<span>赶紧下单试试吧~~</span>
-		<p>随便逛逛</p>
+		<p @click='OneBack()'>随便逛逛</p>
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default{
+		name:'mineListOne',
+		methods:{
+			OneBack(){
+				this.$router.push({
+					path:'/home'
+				})
+			}
+		}
+	}
 </script>
 <style type="text/css">
 #mineOne{
