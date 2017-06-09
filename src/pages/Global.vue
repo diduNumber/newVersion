@@ -170,6 +170,9 @@
     #global .swiper-container-horizontal > .swiper-pagination-bullets{
         left: 1.5rem;
     }
+    #global .header{
+        font-size: 0.13rem;
+    }
     #global{
         font-size: 0;
     }
