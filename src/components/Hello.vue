@@ -1,8 +1,8 @@
 <template>
   <div class="header">
-      <button @click='kissBack()'>hehe</button>
+      <span @click='kissBack()'></span>
       <h3>{{ title }}</h3>
-      <span></span>
+      <span @click="kissBack()"></span>
   </div>
 </template>
 
@@ -23,16 +23,37 @@ export default {
 	},
 	created () {
 		//给bus添加事件 接收header的文字
-  	this.bus.$on('text', data => {
-		   this.title = data;
-  	});
+	  	this.bus.$on('text', data => {
+			   this.title = data;
+	  	});
 	}
 }
 </script>
 
 <style scoped>
-    .header{
-    	 
-    }
-    
+.header{
+	position: relative;
+}
+.header span:first-child{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 2%;
+	display: inline-block;
+	background:url(../../static/Homeimg/mineIcon.png) no-repeat center center;
+	background-size: contain;
+	width: 0.2rem;
+	height:0.2rem;
+}
+.header span:last-child{
+	display: inline-block;
+	background: url(../../static/Homeimg/mineHome.png) no-repeat center center;
+	background-size: contain;
+	width: 0.23rem;
+	height: 0.2rem;
+	position: absolute;
+	top: 50%;
+	right: 2.5%;
+	transform: translateY(-50%);
+}   
 </style>

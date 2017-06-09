@@ -56,7 +56,7 @@ export default {
         this.nav1 = this.nav[1];
         this.nav2 = this.nav[2];
         this.nav3 = this.nav[3];
-        console.log(this.nav[0]);
+        //console.log(this.nav[0]);
       })
   }
 }

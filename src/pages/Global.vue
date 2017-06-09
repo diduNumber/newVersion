@@ -1,6 +1,12 @@
 <template>
     <div id='global'>
-      <hello></hello>
+        <hello></hello>
+        <swiper :options="swiperOption" ref="mySwiper">
+            <swiper-slide v-for="item in data[951]">
+                <img :src="item.filename">
+            </swiper-slide>
+            <div class="swiper-pagination"  slot="pagination"></div>
+        </swiper>
         <div class="nav" @click="goRoom($event)">
             <!-- <ul>
                 <li v-for="item of data[954]">
@@ -62,6 +68,9 @@
                 </ul>
             </div>
         </div>
+        <div class="homeCarImg">
+        <span></span>
+      </div>
     </div>
 </template>
 
@@ -73,17 +82,25 @@
         goRoomMsgEuroper:{backgroundColor:"#809c00", requestUrl:"https://w-ssl.lefeng.com/wap/goods/listWithStock?brandId=1930255299&start=1&limit=10&warehouse=VIP_NH&isDisplay=false&_=1496823387033", smallImg:"02small.jpg", bigImg:"02big.png"},
         goRoomMsgTaiGang:{backgroundColor:"#4f3a64", requestUrl:"https://w-ssl.lefeng.com/wap/goods/listWithStock?brandId=1930255314&start=1&limit=10&warehouse=VIP_NH&isDisplay=false&_=1496823595241", smallImg:"04small.jpg", bigImg:"04big.png"}
     }
+    // 引入轮播图组件
+    import {swiper, swiperSlider} from 'vue-awesome-swiper'
     export default{
         name: 'global',
         components:{
-          Hello
+          Hello, swiper, swiperSlider
         },
         data(){
             return{
                 data:{},
                 dataList:{},
                 goodsList:{},
-                goRoomMsg:{}
+                goRoomMsg:{},
+                swiperOption:{
+                    autoplay:3000,
+                    direction: 'horizontal',
+                    pagination : '.swiper-pagination',
+                    autoplayDisableOnInteraction:false
+                }
             }
         },
         methods:{
@@ -115,7 +132,10 @@
                 // '/room/' + this.goRoomMsg
                 this.$router.push({
                     path: '/room/abc',
-                    query: this.goRoomMsg
+                    query:{
+                      data:this.goRoomMsg,
+                      dataAll: goRoomMsgs 
+                    } 
                 });
                 
             }
@@ -123,7 +143,7 @@
         created(){
             this.axios.get("http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=951%2C954%2C957%2C980%2C964%2C983%2C976&resolution=375x667&appName=lefeng_android&version=4.1.1").then(res => {
                 this.data = res.data.data;
-                
+                console.log(this.data);
             });
             this.axios.get("http://w.lefeng.com/api/neptune/special_brands/v3?page=1&labelType=3").then(res => {
                 this.dataList = res.data.data;
@@ -139,6 +159,23 @@
 </script>
 
 <style>
+    #global .swiper-pagination-bullet{
+        width: 6px;
+        height: 6px;
+        display: inline-block;
+        background: rgb(51, 51, 51);
+        border-radius: 0;
+        opacity: 1;
+    }
+    #global .swiper-pagination-bullet-active{
+        background: rgb(252, 17, 88);
+    }
+    #global .swiper-container-horizontal > .swiper-pagination-bullets{
+        left: 1.5rem;
+    }
+    #global .header{
+        font-size: 0.13rem;
+    }
     #global{
         font-size: 0;
     }
@@ -227,5 +264,24 @@
         height: 0.3rem;
         background: url("../../static/globalCart.png") no-repeat center center;
         background-size: contain;
+    }
+    #global .homeCarImg{
+      position: fixed;
+        left: .11rem;
+        bottom: .65rem;
+        color: #fff;
+        padding: .05rem .1rem;
+        background: rgba(0,0,0,.9);
+        border-radius: 3px;
+    }
+    #global .homeCarImg span{
+      background: url(../../static/Homeimg/homrCar.png) no-repeat left center;
+      background-size: contain;
+      display: inline-block;
+      width: 0.27rem;
+      height: 0.31rem;
+    }
+    #global .divImg{
+        padding: 0.1rem;
     }
 </style>
