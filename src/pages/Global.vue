@@ -1,6 +1,6 @@
 <template>
     <div id='global'>
-      <hello></hello>
+        <hello></hello>
         <swiper :options="swiperOption" ref="mySwiper">
             <swiper-slide v-for="item in data[951]">
                 <img :src="item.filename">
@@ -68,6 +68,9 @@
                 </ul>
             </div>
         </div>
+        <div class="homeCarImg">
+        <span></span>
+      </div>
     </div>
 </template>
 
@@ -261,5 +264,24 @@
         height: 0.3rem;
         background: url("../../static/globalCart.png") no-repeat center center;
         background-size: contain;
+    }
+    #global .homeCarImg{
+      position: fixed;
+        left: .11rem;
+        bottom: .65rem;
+        color: #fff;
+        padding: .05rem .1rem;
+        background: rgba(0,0,0,.9);
+        border-radius: 3px;
+    }
+    #global .homeCarImg span{
+      background: url(../../static/Homeimg/homrCar.png) no-repeat left center;
+      background-size: contain;
+      display: inline-block;
+      width: 0.27rem;
+      height: 0.31rem;
+    }
+    #global .divImg{
+        padding: 0.1rem;
     }
 </style>
