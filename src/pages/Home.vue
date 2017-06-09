@@ -290,7 +290,7 @@
   height: 0.43rem;
   position: fixed;
   line-height: 0.43rem;
-  z-index: 10;
+  z-index: 999;
   top: 0;
   left: 0; 
   background-color: #fc1158;

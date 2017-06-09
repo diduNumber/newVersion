@@ -2,11 +2,20 @@
 	<div id="mineFore">
 		<i></i>
 		<span>暂无待评价订单哦～</span>
-		<p>随便逛逛</p>
+		<p @click="foreBack()">随便逛逛</p>
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default {
+		name:'mineListFore',
+		methods:{
+			foreBack(){
+				this.$router.push({
+					path:'/home'
+				})
+			}
+		}
+	}
 </script>
 <style type="text/css">
 #mineFore{
