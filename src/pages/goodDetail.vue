@@ -56,12 +56,18 @@
 							<p>该商品均在国外采购</p>
 							<p>预计送达时间 : {{ data.expectDeliveryData }}</p>
 						</div>
-						<ul class="goodJie">
+						<!-- <ul class="goodJie">
 							<li v-for="item in data.descriptions" class="clear">
 								<span class="goodJieLeft">{{ item.name }}</span>
 								<span class="goodJieRight">{{ item.value }}</span>
 							</li>
-						</ul>
+						</ul> -->
+						<table class="goodJie">
+							<tr v-for="item in data.descriptions">
+								<td class="goodJieLeft">{{ item.name }}</td>
+								<td class="goodJieRight">{{ item.value }}</td>
+							</tr>
+						</table>
 						<p class="goodPicInfo" @click="showPic()" v-if="flag">点击查看图文详情</p>
 						<img class="goodDetailPic" v-if="!flag" :src="data.detailImage">
 					</div>
@@ -417,24 +423,20 @@
 	}
 	.goodJie{
 		border: 1px solid #ccc;
-		border-bottom: none;
+		border-collapse: collapse;
 	}
-	.goodJie span{
+	.goodJie td{
+		border: 1px solid #ccc;
 		padding: 0 0.1rem;
-		display: inline-block;
 		line-height: 0.37rem;
-		border-bottom: 1px solid #ccc;
-		box-sizing: border-box;
 	}
 	.goodJieLeft{
-		float: left;
 		width: 1.1rem;
-		border-right: 1px solid #ccc;
 		background: #f7f7f7;
 	}
 	.goodJie .goodJieRight{
-		float: left;
 		width: 2.43rem;
+		line-height: 0.25rem;
 		padding: 0 0.075rem;
 	}
 	.goodDetailPic{
