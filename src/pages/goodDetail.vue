@@ -121,6 +121,12 @@
 					</li>
 				</ul>
 			</div>
+			<div class="homeCarImg" @click="goCart()">
+				<div>
+	            	<span></span>
+	            	<button class="CarRight">加入购物车</button>					
+				</div>
+            </div>
 		</section>
 	</div>
 </template>
@@ -179,9 +185,14 @@
 						console.log(that.dataAnotherSee)
 					})
 				}
-			}
-		}
-		,
+			},
+			// 跳转到购物车页面
+            goCart () {
+	            this.$router.push({
+	                path:"/shopping"
+	            })
+        	}
+		},
 		created () {
 			console.log(this.id.goods.goods.gid);
 			// console.log(this.data)
@@ -514,4 +525,38 @@
 		color: #4d4d4d;
 		font-size: 0.12rem;
 	}
+
+	/*----- 跳转购物车页面 -----*/
+	.homeCarImg{
+      	position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: .1rem;
+        background: rgba(0,0,0,.7);
+    }
+    .homeCarImg div{
+    	height: 0.3rem;
+    }
+    .homeCarImg span{
+      background: url(../../static/Homeimg/homrCar.png) no-repeat left center;
+      background-size: contain;
+      display: inline-block;
+      vertical-align: top;
+      width: 0.275rem;
+      height: 0.31rem;
+    }
+    .CarRight{
+    	border: none;
+    	width: 1.0rem;
+    	height: 0.5rem;
+    	position: absolute;
+    	right: 0;
+    	top: 0;
+        color: #fff;
+    	line-height: 0.5rem;
+    	background: #ff0056;
+    	font-size: 0.13rem;
+    	text-align: center;
+    }
 </style>
