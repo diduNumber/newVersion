@@ -49,7 +49,7 @@
                 </div>
                 <div class="singleBrandList">
                     <ul>
-                        <li v-for="item of goodsList">
+                        <li v-for="item of goodsList" @click="goDetail(item)">
                             <div class="divImg">
                                 <img v-lazy="item.goods.image">
                             </div>
@@ -143,10 +143,20 @@
             },
             // 跳转到购物车页面
             goCart(){
-            this.$router.push({
-                path:"/shopping"
-            })
-        }
+                this.$router.push({
+                    path:"/shopping"
+                })
+            },
+            // 跳转到详情页面
+            goDetail(item){
+              console.log(item);
+              this.$router.push({
+                path:'/goodDetail',
+                query:{
+                  goods:item
+                }
+              })
+            }
         },
         created(){
             this.axios.get("http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=951%2C954%2C957%2C980%2C964%2C983%2C976&resolution=375x667&appName=lefeng_android&version=4.1.1").then(res => {

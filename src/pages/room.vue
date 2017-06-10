@@ -14,7 +14,7 @@
 		</div>
 		<div class="goodList" :style="{background: id.backgroundColor}">
 			<ul>
-				<li v-for="item of goodsList">
+				<li v-for="item of goodsList" @click="goDetail(item)">
 					<div class="divImg">
 						<img v-lazy="item.goods.image">
 					</div>
@@ -58,6 +58,16 @@
 			backRoom(){
 				history.back()
 			},
+			// 跳转到详情页面
+            goDetail(item){
+              console.log(item);
+              this.$router.push({
+                path:'/goodDetail',
+                query:{
+                  goods:item
+                }
+              })
+            },
            /* toTopFixed(){
             	console.log("111111111111");
             	// console.log(this.$el.children[2]);

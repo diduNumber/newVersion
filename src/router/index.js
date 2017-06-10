@@ -45,5 +45,7 @@ const routes = [
 ];
 //导出创建好的路由对象
 export default new VueRouter({
+    // 刷新时保证传参也不会受变化回到
+    // mode:'history',
 	routes
 }); 

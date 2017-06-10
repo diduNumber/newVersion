@@ -56,12 +56,18 @@
 							<p>该商品均在国外采购</p>
 							<p>预计送达时间 : {{ data.expectDeliveryData }}</p>
 						</div>
-						<ul class="goodJie">
+						<!-- <ul class="goodJie">
 							<li v-for="item in data.descriptions" class="clear">
 								<span class="goodJieLeft">{{ item.name }}</span>
 								<span class="goodJieRight">{{ item.value }}</span>
 							</li>
-						</ul>
+						</ul> -->
+						<table class="goodJie">
+							<tr v-for="item in data.descriptions">
+								<td class="goodJieLeft">{{ item.name }}</td>
+								<td class="goodJieRight">{{ item.value }}</td>
+							</tr>
+						</table>
 						<p class="goodPicInfo" @click="showPic()" v-if="flag">点击查看图文详情</p>
 						<img class="goodDetailPic" v-if="!flag" :src="data.detailImage">
 					</div>
@@ -121,6 +127,12 @@
 					</li>
 				</ul>
 			</div>
+			<div class="homeCarImg" @click="goCart()">
+				<div>
+	            	<span></span>
+	            	<button class="CarRight">加入购物车</button>					
+				</div>
+            </div>
 		</section>
 	</div>
 </template>
@@ -179,9 +191,14 @@
 						console.log(that.dataAnotherSee)
 					})
 				}
-			}
-		}
-		,
+			},
+			// 跳转到购物车页面
+            goCart () {
+	            this.$router.push({
+	                path:"/shopping"
+	            })
+        	}
+		},
 		created () {
 			console.log(this.id.goods.goods.gid);
 			// console.log(this.data)
@@ -406,24 +423,20 @@
 	}
 	.goodJie{
 		border: 1px solid #ccc;
-		border-bottom: none;
+		border-collapse: collapse;
 	}
-	.goodJie span{
+	.goodJie td{
+		border: 1px solid #ccc;
 		padding: 0 0.1rem;
-		display: inline-block;
 		line-height: 0.37rem;
-		border-bottom: 1px solid #ccc;
-		box-sizing: border-box;
 	}
 	.goodJieLeft{
-		float: left;
 		width: 1.1rem;
-		border-right: 1px solid #ccc;
 		background: #f7f7f7;
 	}
 	.goodJie .goodJieRight{
-		float: left;
 		width: 2.43rem;
+		line-height: 0.25rem;
 		padding: 0 0.075rem;
 	}
 	.goodDetailPic{
@@ -514,4 +527,38 @@
 		color: #4d4d4d;
 		font-size: 0.12rem;
 	}
+
+	/*----- 跳转购物车页面 -----*/
+	.homeCarImg{
+      	position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: .1rem;
+        background: rgba(0,0,0,.7);
+    }
+    .homeCarImg div{
+    	height: 0.3rem;
+    }
+    .homeCarImg span{
+      background: url(../../static/Homeimg/homrCar.png) no-repeat left center;
+      background-size: contain;
+      display: inline-block;
+      vertical-align: top;
+      width: 0.275rem;
+      height: 0.31rem;
+    }
+    .CarRight{
+    	border: none;
+    	width: 1.0rem;
+    	height: 0.5rem;
+    	position: absolute;
+    	right: 0;
+    	top: 0;
+        color: #fff;
+    	line-height: 0.5rem;
+    	background: #ff0056;
+    	font-size: 0.13rem;
+    	text-align: center;
+    }
 </style>
