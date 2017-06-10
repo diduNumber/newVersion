@@ -88,7 +88,9 @@
 		},
 		methods:{
 			mineBack(){
-				history.back(); 
+				this.$router.push({
+					path:'/home'
+				})
 			},
 			mineList(){
 				this.$router.push({

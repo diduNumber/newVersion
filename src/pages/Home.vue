@@ -136,6 +136,7 @@
 </template>
 
 <script type="text/javascript">
+  //应用swiper实现轮播图滚动
   import {swiper,swiperSlide} from 'vue-awesome-swiper'
   var load = false;
   export default {
@@ -143,6 +144,7 @@
     components:{swiper,swiperSlide},
     data(){
       return{
+        //轮播图
         swiperOption:{
           autoplay:3000,
           direction:'horizontal',
@@ -166,6 +168,7 @@
       }
     },
     methods:{
+      //循环请求数据的个数
         homeMore(){
           load = true;
           this.start ++;
@@ -180,6 +183,7 @@
              })
           }
         },
+        //点击header里的house跳到我的页面
         goMine(){
           this.$router.push({
             path:'/mine'
@@ -238,15 +242,11 @@
         }
     },
     created(){
-        // 请求bar的数据
-        this.axios.get('http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=943%2C478%2C496%2C693%2C724%2C725%2C726%2C727%2C728&resolution=375x667&appName=lefeng_android&version=4.1.1').then(res => {
-            this.goBar = res.data.data[496];
-            console.log(this.goBar);
-      })
       //获取轮播图，列表等数据
       this.axios.get('http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=943%2C478%2C496%2C693%2C724%2C725%2C726%2C727%2C728&resolution=375x667&appName=lefeng_android&version=4.1.1').then(res => {
         //console.log(res.data.data);
         //console.log(this);
+        this.goBar = res.data.data[496];
         this.data = res.data.data;
         this.gou = this.data[727][0];
         this.nav = this.data[728][0];
@@ -270,6 +270,7 @@
       })
     },
     directives: {
+      //监听滑动鼠标
         scroll: {
            bind: (el, binding)=>{
               window.addEventListener('scroll', ()=> {
