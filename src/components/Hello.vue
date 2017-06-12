@@ -2,7 +2,7 @@
   <div class="header">
       <span @click='kissBack()'></span>
       <h3>{{ title }}</h3>
-      <span @click="kissBack()"></span>
+      <span @click="kissHome()"></span>
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
 		kissBack () {
 			this.bus.$emit('data', this.msg);
 			history.back();
+		},
+		kissHome(){
+			this.$router.push({
+				path:'/home'
+			})
 		}
 	},
 	created () {
