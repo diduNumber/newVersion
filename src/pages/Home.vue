@@ -109,7 +109,7 @@
       <div class="homeXuan">
         <p>· 每日精选 ·</p>
         <ul>
-          <li v-for="item in pages">
+          <li v-for="item in pages" @click="goDetail(item)">
             <div>
               <img v-lazy="item.goods.verticalImage"/>
               <div class="show ellipsis">
@@ -119,7 +119,7 @@
               <div class="price">
                 <span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice}}</span>
                 <span class="realPrice">￥{{ item.goods.marketPrice }}</span>
-                <span class="homeCar"></span>
+                <span class="homeCar" @click.stop='shopping(item)'></span>
               </div>
             </div>
           </li>
@@ -136,6 +136,7 @@
 </template>
 
 <script type="text/javascript">
+  //应用swiper实现轮播图滚动
   import {swiper,swiperSlide} from 'vue-awesome-swiper'
   var load = false;
   export default {
@@ -143,6 +144,7 @@
     components:{swiper,swiperSlide},
     data(){
       return{
+        //轮播图
         swiperOption:{
           autoplay:3000,
           direction:'horizontal',
@@ -166,6 +168,7 @@
       }
     },
     methods:{
+      //循环请求数据的个数
         homeMore(){
           load = true;
           this.start ++;
@@ -180,6 +183,7 @@
              })
           }
         },
+        //点击header里的house跳到我的页面
         goMine(){
           this.$router.push({
             path:'/mine'
@@ -220,22 +224,34 @@
                 break;
             }
         },
+        // 跳转到购物车
         goCart(){
             this.$router.push({
                 path:"/shopping"
             })
-        }
+        },
+        // 跳转到详情页面
+        goDetail(item){
+          console.log(item);
+          this.$router.push({
+            path:'/goodDetail',
+            query:{
+              goods:item
+            }
+          })
+        },
+        //添加购物车
+    	shopping (item){
+    		this.$store.commit('add_product',item);
+    		console.log(this.$store.state.product);
+    	},
     },
     created(){
-        // 请求bar的数据
-        this.axios.get('http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=943%2C478%2C496%2C693%2C724%2C725%2C726%2C727%2C728&resolution=375x667&appName=lefeng_android&version=4.1.1').then(res => {
-            this.goBar = res.data.data[496];
-            console.log(this.goBar);
-      })
       //获取轮播图，列表等数据
       this.axios.get('http://w.lefeng.com/api/neptune/brand/ad/v3?zoneId=943%2C478%2C496%2C693%2C724%2C725%2C726%2C727%2C728&resolution=375x667&appName=lefeng_android&version=4.1.1').then(res => {
         //console.log(res.data.data);
         //console.log(this);
+        this.goBar = res.data.data[496];
         this.data = res.data.data;
         this.gou = this.data[727][0];
         this.nav = this.data[728][0];
@@ -259,6 +275,7 @@
       })
     },
     directives: {
+      //监听滑动鼠标
         scroll: {
            bind: (el, binding)=>{
               window.addEventListener('scroll', ()=> {
@@ -290,7 +307,7 @@
   height: 0.43rem;
   position: fixed;
   line-height: 0.43rem;
-  z-index: 10;
+  z-index: 999;
   top: 0;
   left: 0; 
   background-color: #fc1158;

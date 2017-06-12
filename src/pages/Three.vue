@@ -2,11 +2,20 @@
 	<div id="mineThree">
 		<i></i>
 		<span>暂无待收货订单哦～</span>
-		<p>随便逛逛</p>
+		<p @click='threeBack()'>随便逛逛</p>
 	</div>
 </template>
 <script type="text/javascript">
-	
+	export default{
+		name:'mineListThree',
+		methods:{
+			threeBack(){
+				this.$router.push({
+					path:'/home'
+				})
+			}
+		}
+	}
 </script>
 <style type="text/css">
 #mineThree{

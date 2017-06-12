@@ -9,7 +9,7 @@
 	    	</ul>
 	    	<div class="goodDetail">
 	    		<ul>
-	    			<li v-for='item,index in goods'>  
+	    			<li v-for='item,index in goods' @click="goDetail(item)">  
 	    			    <img v-lazy="item.goods.verticalImage"/>
 	    			    <p>蜂购全球</p>
 	    			    <div class="show ellipsis">
@@ -19,7 +19,7 @@
 	    			    <div class="price">
 	    			    	<span>￥</span><span class="showPrice">{{ item.goods.vipshopPrice}}</span>
 	    			    	<span class="realPrice">￥{{ item.goods.marketPrice }}</span>
-	    			    	<span class="kissCar" @click='shopping(item)'></span>
+	    			    	<span class="kissCar" @click.stop='shopping(item)'></span>
 	    			    </div>
 	    			</li>
 	    		</ul>
@@ -175,10 +175,19 @@
         		this.show = { yy: true };
         	},
         	//添加购物车
-        	shopping (item) {
+        	shopping (item){
         		this.$store.commit('add_product',item);
         		console.log(this.$store.state.product);
-        	}
+        	},
+        	// 跳转到详情页面
+            goDetail(item){
+              this.$router.push({
+                path:'/goodDetail',
+                query:{
+                  goods:item
+                }
+              })
+            }
         },
         created () {
         	this.axios.get('http://w.lefeng.com/api/neptune/brand/details/v1?brandId=755041475').then(res => {

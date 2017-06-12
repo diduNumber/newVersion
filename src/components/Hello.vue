@@ -34,6 +34,7 @@ export default {
 .header{
 	position: relative;
 	height: 0.44rem;
+	background-color: rgb(250, 251, 252)
 }
 .header span:first-child{
 	position: absolute;

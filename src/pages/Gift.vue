@@ -49,7 +49,7 @@
       <div class="giftList">
         <ul>
           <li v-for="item in data">
-            <img v-lazy="item.goods.image">
+            <img v-lazy="item.goods.image" @click='goDetail(item)'>
             <div>
               <p class="ellipsis">{{ item.goods.name }}</p>
               <span class="giftMoney">￥{{ item.goods.vipshopPrice }}</span>
@@ -68,6 +68,18 @@
       data(){
         return{
           data:[]
+        }
+      },
+      methods:{
+          // 跳转到详情页面
+        goDetail(item){
+          console.log(item);
+          this.$router.push({
+            path:'/goodDetail',
+            query:{
+              goods:item
+            }
+          })
         }
       },
       components:{

@@ -20,6 +20,7 @@ import Two from '../pages/Two'
 import Three from '../pages/Three'
 import Fore from '../pages/Fore'
 import Shopping from '../pages/shopping'
+import GoodDetail from '../pages/goodDetail'
 //定义路由规则
 const routes = [
     {path: '', component: Home},
@@ -31,6 +32,7 @@ const routes = [
     {path:'/room/:id', component:Room},
     {path:'/mine', component:Mine},
     {path:'/shopping', component:Shopping},
+    {path:'/goodDetail', component:GoodDetail},
     {path:'/mineList',component:MineList
     ,children:[
     	{ path: '', component: One },
@@ -43,5 +45,7 @@ const routes = [
 ];
 //导出创建好的路由对象
 export default new VueRouter({
+    // 刷新时保证传参也不会受变化回到
+    // mode:'history',
 	routes
 }); 

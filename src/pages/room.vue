@@ -1,6 +1,6 @@
 <template>
 	<div class="room" :style="{background: id.backgroundColor}">
-		<button @click="backRoom()" class="btnRoom">返回</button>
+		<hello></hello>
 		<div class="bigImg">
 			<img  v-lazy="'../../static/' + id.bigImg">
 		</div>
@@ -14,7 +14,7 @@
 		</div>
 		<div class="goodList" :style="{background: id.backgroundColor}">
 			<ul>
-				<li v-for="item of goodsList">
+				<li v-for="item of goodsList" @click="goDetail(item)">
 					<div class="divImg">
 						<img v-lazy="item.goods.image">
 					</div>
@@ -33,7 +33,11 @@
 </template>
 
 <script>
+	import Hello from '../components/Hello'
 	export default{
+		components:{
+			Hello
+		},
 		methods:{
 			/*getJapanData(){
 				window.addEventListener('scroll', () => {
@@ -54,6 +58,16 @@
 			backRoom(){
 				history.back()
 			},
+			// 跳转到详情页面
+            goDetail(item){
+              console.log(item);
+              this.$router.push({
+                path:'/goodDetail',
+                query:{
+                  goods:item
+                }
+              })
+            },
            /* toTopFixed(){
             	console.log("111111111111");
             	// console.log(this.$el.children[2]);
@@ -175,9 +189,17 @@
 </script>
 
 <style>
+	.room .header{
+		background: #fff;
+		/* position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index:999; */
+	}
 	.position{
 		position: fixed;
-		top: 0;
+		top: 0rem;
 		z-index: 999;
 		width: 100%;
 		height: .339rem;
