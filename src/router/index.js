@@ -30,7 +30,7 @@ const routes = [
     {path: '/gift', component: Gift},
     {path:'/room/:id', component:Room},
     {path:'/mine', component:Mine},
-    {path:'shopping', component:Shopping},
+    {path:'/shopping', component:Shopping},
     {path:'/mineList',component:MineList
     ,children:[
     	{ path: '', component: One },

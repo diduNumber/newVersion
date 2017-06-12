@@ -26,6 +26,9 @@
 	    	</div>	
     	</div>	
     	<box-hidden :sx='sx' :show='show'></box-hidden>
+    	 <div class="homeCarImg" @click="goCart()">
+        	<span></span>
+         </div>
     </div>
 </template>
 
@@ -125,6 +128,11 @@
 		        	})
         		}
         	},
+		    goCart(){
+		            this.$router.push({
+		                path:"/shopping"
+		            })
+		    },
         	//点击一次获取数据
         	changeItem (index) {
         		//改变相应的indexItem
@@ -168,8 +176,8 @@
         	},
         	//添加购物车
         	shopping (item) {
-        		this.product.push(item);
-        		this.bus.$emit('product',this.product);
+        		this.$store.commit('add_product',item);
+        		console.log(this.$store.state.product);
         	}
         },
         created () {
@@ -450,4 +458,20 @@
    	   background: url(../../static/right.png) no-repeat 100% 100%;
    	   background-size: .175rem;
    }
+   #kiss .homeCarImg{
+  position: fixed;
+    left: .11rem;
+    bottom: .65rem;
+    color: #fff;
+    padding: .05rem .1rem;
+    background: rgba(0,0,0,.9);
+    border-radius: 3px;
+}
+  #kiss .homeCarImg span{
+  background: url(../../static/Homeimg/homrCar.png) no-repeat left center;
+  background-size: contain;
+  display: inline-block;
+  width: 0.27rem;
+  height: 0.31rem;
+}
 </style>

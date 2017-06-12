@@ -30,8 +30,63 @@ import MuseUI from 'muse-ui'
 Vue.use(MuseUI)
 //使用light主题
 Vue.config.productionTip = false
-
-
+//引入vuex
+import Vuex from 'vuex'
+//全局使用vuex
+Vue.use(Vuex)
+//创建store
+const store = new Vuex.Store({
+	 state: {
+	 	    //共享的数据//所有产品的数组
+	 	    product:[],
+	 	    all_price: 0
+	 },
+	 mutations: {//添加商品的方法
+	 	    add_product (state, goods){
+	 	    	/*if(state.product.length == 0){
+	 	    		   goods.goods.count = 1;
+	 	    		 	 state.product.push(goods);
+	 	    		 	 return false;
+	 	    	}else{
+			 	    	state.product.map(function(item, index){
+			 	    		//为每一个item.goods添加count
+			 	    		  if(item.goods.gid == goods.goods.gid){
+			 	    		  	  item.goods.count++;
+			 	    		  	  return true;
+			 	    		  }else{
+			 	    		  	   goods.goods.count = 1;
+			 	    		  	   state.product.push(goods);
+			 	    		  	   return true;
+			 	    		  }
+			 	    	})
+			 	    }*/
+			 	   let flagGoods = false;
+			 	   state.product.map(function(item, index){
+			 	    		//为每一个item.goods添加count
+	 	    		  if(item.goods.gid == goods.goods.gid){
+	 	    		  	  item.goods.count++;
+	 	    		  	  flagGoods = true;
+	 	    		  	  state.all_price += item.goods.vipshopPrice;
+	 	    		  };
+	 	    	 })
+					 	   if(flagGoods == false){
+					 	   	goods.goods.count = 1;
+					 	   	state.product.push(goods);
+					 	   	state.all_price += goods.goods.vipshopPrice;
+					 	   }
+	 	    	},
+			 	    ruduce_product (state, index){
+			 	    			console.log(state.product[index]);
+			 	    	   state.product[index].goods.count --;
+			 	    	   state.all_price -= state.product[index].goods.vipshopPrice;
+			 	    	   if(state.product[index].goods.count == 0){
+			 	    	   	   console.log(index);
+			 	    	      state.product.splice(index,1);
+			 	    	   }
+			 	    }
+	 	           
+	 }
+})
 //创建一个bus用来传值
 const bus = new Vue();
 Vue.prototype.bus = bus;
@@ -41,5 +96,6 @@ new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },
+  store,
   router  
 })
